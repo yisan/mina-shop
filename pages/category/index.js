@@ -62,24 +62,23 @@ Page({
   },
 
   //  获取分类数据
-  getCategoryList() {
-    request({
+  async getCategoryList() {
+    const res = await request({
       url: '/categories'
-    }).then(result => {
-      this.categoryList = result.data.message
-      // 将数据存储到本地
-      wx.setStorageSync('cates', {
-        time: Date.now(),
-        data: this.categoryList
-      });
-      // 构造左侧大菜单数据
-      let leftMenuList = this.categoryList.map(v => v.cat_name)
-      let rightMenuContent = this.categoryList[0].children
+    })
+    this.categoryList = res.data.message
+    // 将数据存储到本地
+    wx.setStorageSync('cates', {
+      time: Date.now(),
+      data: this.categoryList
+    });
+    // 构造左侧大菜单数据
+    let leftMenuList = this.categoryList.map(v => v.cat_name)
+    let rightMenuContent = this.categoryList[0].children
 
-      this.setData({
-        leftMenuList,
-        rightMenuContent
-      })
+    this.setData({
+      leftMenuList,
+      rightMenuContent
     })
   }
 })

@@ -10,48 +10,42 @@ Page({
     floorList: []
   },
   // 页面开始加载，就会触发
-  onLoad: function (options) {
+  onLoad: async function (options) {
     //  1.发送异步请求获取轮播图数据
-    var reqTask = wx.request({
-      url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata',
-      data: {},
-      success: (result) => {
-        this.setData({
-          swiperList: result.data.message
-        })
-      },
-    });
+    const res = await request({
+      url: '/home/swiperdata'
+    })
+    this.setData({
+      swiperList: res.data.message
+    })
     this.getSwiperList()
     this.getCategoryList()
     this.getFloorList()
   },
   // 获取轮播图数据
-  getSwiperList() {
-    request({
+  async getSwiperList() {
+    const res = await request({
       url: '/home/swiperdata'
-    }).then(result => {
-      this.setData({
-        swiperList: result.data.message
-      })
+    })
+    this.setData({
+      swiperList: res.data.message
     })
   },
-  getCategoryList() {
-    request({
+  async getCategoryList() {
+    const res = await request({
       url: '/home/catitems'
-    }).then(result => {
-      this.setData({
-        categoryList: result.data.message
-      })
+    })
+    this.setData({
+      categoryList: res.data.message
     })
   },
-  getFloorList() {
-    request({
+  async getFloorList() {
+    const res = await request({
       url: '/home/floordata'
-    }).then(result => {
-      console.log(result);
-      this.setData({
-        floorList: result.data.message
-      })
+    })
+    console.log(res);
+    this.setData({
+      floorList: res.data.message
     })
   }
 });
