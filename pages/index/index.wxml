@@ -1,10 +1,7 @@
 <!--index.wxml-->
 <view class="search_input">
   <!-- 搜索框开始 -->
-  <navigator
-    url="/pages/search/index"
-    open-type="navigate"
-  >搜索</navigator>
+  <SearchInput></SearchInput>
   <!-- 搜索框结束 -->
 </view>
 <!-- 轮播图开始 -->
