@@ -10,14 +10,7 @@ Page({
     floorList: []
   },
   // 页面开始加载，就会触发
-  onLoad: async function (options) {
-    //  1.发送异步请求获取轮播图数据
-    const res = await request({
-      url: '/home/swiperdata'
-    })
-    this.setData({
-      swiperList: res.data.message
-    })
+  onLoad: function (options) {
     this.getSwiperList()
     this.getCategoryList()
     this.getFloorList()
@@ -28,7 +21,7 @@ Page({
       url: '/home/swiperdata'
     })
     this.setData({
-      swiperList: res.data.message
+      swiperList: res
     })
   },
   async getCategoryList() {
@@ -36,7 +29,7 @@ Page({
       url: '/home/catitems'
     })
     this.setData({
-      categoryList: res.data.message
+      categoryList: res
     })
   },
   async getFloorList() {
@@ -45,7 +38,7 @@ Page({
     })
     console.log(res);
     this.setData({
-      floorList: res.data.message
+      floorList: res
     })
   }
 });

@@ -66,7 +66,7 @@ Page({
     const res = await request({
       url: '/categories'
     })
-    this.categoryList = res.data.message
+    this.categoryList = res
     // 将数据存储到本地
     wx.setStorageSync('cates', {
       time: Date.now(),
