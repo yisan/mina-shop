@@ -21,6 +21,15 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    handleItemTap(e) {
+      // 1.获取点击索引
+      const {
+        index
+      } = e.currentTarget.dataset
+      // 2.触发父组件中的事件，自定义
+      this.triggerEvent('tabsItemChange', {
+        index
+      })
+    }
   }
 })
