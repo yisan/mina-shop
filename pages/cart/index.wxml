@@ -61,7 +61,7 @@
 <!-- 底部工具栏 -->
 <view class="footer_tool">
   <view class="all_select_wrap">
-    <checkbox-group bindchange>
+    <checkbox-group bindchange="handleCheckedAll">
       <checkbox checked="{{allChecked}}">全选</checkbox>
     </checkbox-group>
   </view>
