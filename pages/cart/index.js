@@ -1,6 +1,7 @@
 // pages/cart/index.js
 import {
-  showModal
+  showModal,
+  showToast
 } from '../../utils/asyncWx';
 Page({
 
@@ -76,6 +77,27 @@ Page({
       this.updateCart(cart)
     }
 
+  },
+  async handlePay(e) {
+    const {
+      address,
+      totalNum
+    } = this.data
+    if (!address.userName) {
+      await showToast({
+        title: '请先选择收货地址'
+      })
+      return
+    }
+    if (totalNum === 0) {
+      await showToast({
+        title: '请选择购买商品'
+      })
+      return
+    }
+    wx.navigateTo({
+      url: '/pages/pay/index',
+    });
   },
   // 设置购物车选中状态，重新计算
   updateCart(cart) {
