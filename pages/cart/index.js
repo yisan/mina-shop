@@ -1,4 +1,7 @@
 // pages/cart/index.js
+import {
+  showModal
+} from '../../utils/asyncWx';
 Page({
 
   /**
@@ -49,6 +52,30 @@ Page({
     allChecked = !allChecked
     cart.forEach(v => v.checked = allChecked);
     this.updateCart(cart)
+  },
+  // 数量加减操作
+  async handleItemNumEdit(e) {
+    let {
+      operation,
+      id
+    } = e.currentTarget.dataset
+    let {
+      cart
+    } = this.data
+    const index = cart.findIndex(v => v.goods_id === id)
+    if (cart[index].num === 1 && operation === -1) {
+      const res = await showModal({
+        content: '您是否要删除？'
+      })
+      if (res.confirm) {
+        cart.splice(index, 1)
+        this.updateCart(cart)
+      }
+    } else {
+      cart[index].num += operation
+      this.updateCart(cart)
+    }
+
   },
   // 设置购物车选中状态，重新计算
   updateCart(cart) {

@@ -49,9 +49,19 @@
         <view class="goods_price_wrap">
           <text class="goods_price">¥{{item.goods_price}}</text>
           <view class="cart_num_tool">
-            <text class="num_edit">-</text>
+            <text
+              class="num_edit"
+              bindtap="handleItemNumEdit"
+              data-id="{{item.goods_id}}"
+              data-operation="{{-1}}"
+            >-</text>
             <text class="goods_num">{{item.num}}</text>
-            <text class="num_edit">+</text>
+            <text
+              class="num_edit"
+              bindtap="handleItemNumEdit"
+              data-id="{{item.goods_id}}"
+              data-operation="{{1}}"
+            >+</text>
           </view>
         </view>
       </view>
