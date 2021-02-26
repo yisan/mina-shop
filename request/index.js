@@ -2,6 +2,13 @@
 let ajaxTimes = 0
 
 export const request = (params) => {
+  // 判断url中是否存在 /my/ 请求到是私有路径 带上 header token
+  let header = {
+    ...params.header
+  }
+  if (params.url.includes('/my/')) {
+    header["Authorization"] = wx.getStorageSync('token');
+  }
   ajaxTimes++
   wx.showLoading({
     title: '加载中',
@@ -11,6 +18,7 @@ export const request = (params) => {
   return new Promise((resolve, reject) => {
     wx.request({
       ...params,
+      header,
       url: baseUrl + params.url,
       success: (result) => {
         resolve(result.data.message)
