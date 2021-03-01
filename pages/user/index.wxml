@@ -33,8 +33,8 @@
         <view class="history_num">0</view>
         <view class="history_name">收藏的店铺</view>
       </navigator>
-      <navigator>
-        <view class="history_num">0</view>
+      <navigator url="/pages/collect/index">
+        <view class="history_num">{{collectNums}}</view>
         <view class="history_name">收藏的商品</view>
       </navigator>
       <navigator>
@@ -49,15 +49,15 @@
     <view class="order_wrap">
       <view class="order_title">我的订单</view>
       <view class="order_content">
-        <navigator>
+        <navigator url="/pages/order/index?type=1">
           <view class="iconfont icon-ding_dan"></view>
           <text>全部订单</text>
         </navigator>
-        <navigator>
+        <navigator url="/pages/order/index?type=2">
           <view class="iconfont icon-fukuantongzhi"></view>
           <text>待付款</text>
         </navigator>
-        <navigator>
+        <navigator url="/pages/order/index?type=3">
           <view class="iconfont icon-receipt-address"></view>
           <text>待收货</text>
         </navigator>

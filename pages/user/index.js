@@ -5,12 +5,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: {}
+    userInfo: {},
+    // 收藏商品的数量
+    collectNums: 0
   },
   onShow() {
-    const userInfo = wx.getStorageSync('user_info');
+    const userInfo = wx.getStorageSync('user_info')
+    const collect = wx.getStorageSync('collect') || []
     this.setData({
-      userInfo
+      userInfo,
+      collectNums: collect.length
     })
 
   }

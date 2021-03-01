@@ -25,7 +25,10 @@
       wx:for="{{swiperList}}"
       wx:key="goods_id"
     >
-      <navigator>
+      <navigator
+        url="{{item.navigator_url}}"
+        open-type="navigate"
+      >
         <image
           src="{{item.image_src}}"
           mode="widthFix"
@@ -38,8 +41,10 @@
 <!-- 导航开始 -->
 <view class="index_cate">
   <navigator
+    url="/pages/category/index"
     wx:for="{{categoryList}}"
     wx:key="name"
+    open-type="switchTab"
   >
     <image
       mode="widthFix"
@@ -68,6 +73,7 @@
     <!-- 内容 -->
     <view class="floor_list">
       <navigator
+        url="{{item2.navigator_url}}"
         wx:for="{{item1.product_list}}"
         wx:for-index="index2"
         wx:for-item="item2"

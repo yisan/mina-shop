@@ -20,6 +20,9 @@ Page({
     const res = await request({
       url: '/home/swiperdata'
     })
+    res.forEach(v => {
+      v.navigator_url = v.navigator_url.replace(/main/, 'index')
+    });
     this.setData({
       swiperList: res
     })
@@ -36,7 +39,11 @@ Page({
     const res = await request({
       url: '/home/floordata'
     })
-    console.log(res);
+    res.forEach(v1 => {
+      v1.product_list.forEach(v2 => {
+        v2.navigator_url = v2.navigator_url.replace(/\?/, '/index\?')
+      })
+    });
     this.setData({
       floorList: res
     })
